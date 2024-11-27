@@ -1,0 +1,1018 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище upModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="car">
+          <Key>
+            <PropertyRef Name="VIN" />
+          </Key>
+          <Property Name="VIN" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Manufacturer" Type="varchar" MaxLength="20" />
+          <Property Name="Model" Type="varchar" MaxLength="50" />
+          <Property Name="Year" Type="varchar" MaxLength="4" />
+          <Property Name="Weight" Type="int" />
+          <Property Name="id_engine" Type="int" />
+          <Property Name="id_type_of_drive" Type="int" />
+          <Property Name="Color_num" Type="int" />
+          <Property Name="code_region" Type="int" />
+        </EntityType>
+        <EntityType Name="car_colors">
+          <Key>
+            <PropertyRef Name="Color_num" />
+          </Key>
+          <Property Name="Color_num" Type="int" Nullable="false" />
+          <Property Name="Color_code" Type="varchar" MaxLength="50" />
+          <Property Name="is_mettalic" Type="bit" />
+          <Property Name="Name_EN" Type="varchar" MaxLength="50" />
+          <Property Name="Color_name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="category" />
+          </Key>
+          <Property Name="category" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="technical_category" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="category_licence">
+          <Key>
+            <PropertyRef Name="category" />
+            <PropertyRef Name="id_licence" />
+          </Key>
+          <Property Name="category" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="id_licence" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="driver">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="middlename" Type="varchar" MaxLength="50" />
+          <Property Name="passport_serial" Type="varchar" MaxLength="50" />
+          <Property Name="passport_number" Type="varchar" MaxLength="50" />
+          <Property Name="postcode" Type="varchar" MaxLength="50" />
+          <Property Name="address_reg_city" Type="varchar" MaxLength="50" />
+          <Property Name="address_reg" Type="varchar" MaxLength="50" />
+          <Property Name="address_life" Type="varchar" MaxLength="50" />
+          <Property Name="address_life_city" Type="varchar" MaxLength="50" />
+          <Property Name="company" Type="varchar" MaxLength="50" />
+          <Property Name="jobname" Type="varchar" MaxLength="50" />
+          <Property Name="phone" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="photo" Type="varchar" MaxLength="50" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="engine_types">
+          <Key>
+            <PropertyRef Name="id_engine" />
+          </Key>
+          <Property Name="id_engine" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type_engine" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="history_hanges_statuses">
+          <Key>
+            <PropertyRef Name="id_change" />
+          </Key>
+          <Property Name="id_change" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date_time_change" Type="datetime" />
+          <Property Name="id_status" Type="int" />
+          <Property Name="id_licence" Type="int" />
+          <Property Name="comment" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="licence">
+          <Key>
+            <PropertyRef Name="id_licence" />
+          </Key>
+          <Property Name="licence_date" Type="date" />
+          <Property Name="expire_date" Type="date" />
+          <Property Name="categories" Type="varchar" MaxLength="20" />
+          <Property Name="licence_series" Type="varchar" MaxLength="20" />
+          <Property Name="licence_number" Type="varchar" MaxLength="20" />
+          <Property Name="Id_driver" Type="int" />
+          <Property Name="id_status" Type="int" />
+          <Property Name="id_licence" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="penalties">
+          <Key>
+            <PropertyRef Name="id_penaltie" />
+          </Key>
+          <Property Name="id_penaltie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date_time" Type="datetime" />
+          <Property Name="id_status_penaltie" Type="int" />
+          <Property Name="summa" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="id_licence" Type="int" />
+          <Property Name="VIN_car" Type="varchar" MaxLength="50" />
+          <Property Name="photo_car" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="region">
+          <Key>
+            <PropertyRef Name="Code_sub" />
+          </Key>
+          <Property Name="Region_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Code_sub" Type="int" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="OKATO_code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gost" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_role" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="status_licence">
+          <Key>
+            <PropertyRef Name="id_status" />
+          </Key>
+          <Property Name="id_status" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_status" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="status_penalties">
+          <Key>
+            <PropertyRef Name="id_status_penaltie" />
+          </Key>
+          <Property Name="id_status_penaltie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_status_penaltie" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="type_of_drive">
+          <Key>
+            <PropertyRef Name="id_type_of_drive" />
+          </Key>
+          <Property Name="id_type_of_drive" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type_of_drive" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="password_user" Type="varchar" MaxLength="20" />
+          <Property Name="login_user" Type="varchar" MaxLength="20" />
+          <Property Name="id_role" Type="int" />
+        </EntityType>
+        <Association Name="FK__category___id_li__6FE99F9F">
+          <End Role="licence" Type="Self.licence" Multiplicity="1" />
+          <End Role="category_licence" Type="Self.category_licence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="licence">
+              <PropertyRef Name="id_licence" />
+            </Principal>
+            <Dependent Role="category_licence">
+              <PropertyRef Name="id_licence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_Penaltie">
+          <End Role="car" Type="Self.car" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="penalties" Type="Self.penalties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="car">
+              <PropertyRef Name="VIN" />
+            </Principal>
+            <Dependent Role="penalties">
+              <PropertyRef Name="VIN_car" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_Region">
+          <End Role="region" Type="Self.region" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="car" Type="Self.car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="region">
+              <PropertyRef Name="Code_sub" />
+            </Principal>
+            <Dependent Role="car">
+              <PropertyRef Name="code_region" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_category">
+          <End Role="category" Type="Self.category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="category_licence" Type="Self.category_licence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="category" />
+            </Principal>
+            <Dependent Role="category_licence">
+              <PropertyRef Name="category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Color">
+          <End Role="car_colors" Type="Self.car_colors" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="car" Type="Self.car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="car_colors">
+              <PropertyRef Name="Color_num" />
+            </Principal>
+            <Dependent Role="car">
+              <PropertyRef Name="Color_num" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_driver">
+          <End Role="driver" Type="Self.driver" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="licence" Type="Self.licence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="driver">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="licence">
+              <PropertyRef Name="Id_driver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_engine">
+          <End Role="engine_types" Type="Self.engine_types" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="car" Type="Self.car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="engine_types">
+              <PropertyRef Name="id_engine" />
+            </Principal>
+            <Dependent Role="car">
+              <PropertyRef Name="id_engine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Licence_Penaltie">
+          <End Role="licence" Type="Self.licence" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="penalties" Type="Self.penalties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="licence">
+              <PropertyRef Name="id_licence" />
+            </Principal>
+            <Dependent Role="penalties">
+              <PropertyRef Name="id_licence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status">
+          <End Role="status_licence" Type="Self.status_licence" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="licence" Type="Self.licence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status_licence">
+              <PropertyRef Name="id_status" />
+            </Principal>
+            <Dependent Role="licence">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_Licence">
+          <End Role="status_licence" Type="Self.status_licence" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="history_hanges_statuses" Type="Self.history_hanges_statuses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status_licence">
+              <PropertyRef Name="id_status" />
+            </Principal>
+            <Dependent Role="history_hanges_statuses">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_Penaltie">
+          <End Role="status_penalties" Type="Self.status_penalties" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="penalties" Type="Self.penalties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status_penalties">
+              <PropertyRef Name="id_status_penaltie" />
+            </Principal>
+            <Dependent Role="penalties">
+              <PropertyRef Name="id_status_penaltie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_type_drive">
+          <End Role="type_of_drive" Type="Self.type_of_drive" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="car" Type="Self.car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type_of_drive">
+              <PropertyRef Name="id_type_of_drive" />
+            </Principal>
+            <Dependent Role="car">
+              <PropertyRef Name="id_type_of_drive" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_roles">
+          <End Role="roles" Type="Self.roles" Multiplicity="0..1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище upModelContainer">
+          <EntitySet Name="car" EntityType="Self.car" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="car_colors" EntityType="Self.car_colors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="category_licence" EntityType="Self.category_licence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="driver" EntityType="Self.driver" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="engine_types" EntityType="Self.engine_types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="history_hanges_statuses" EntityType="Self.history_hanges_statuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="licence" EntityType="Self.licence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="penalties" EntityType="Self.penalties" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="region" EntityType="Self.region" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="roles" EntityType="Self.roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="status_licence" EntityType="Self.status_licence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="status_penalties" EntityType="Self.status_penalties" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="type_of_drive" EntityType="Self.type_of_drive" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__category___id_li__6FE99F9F" Association="Self.FK__category___id_li__6FE99F9F">
+            <End Role="licence" EntitySet="licence" />
+            <End Role="category_licence" EntitySet="category_licence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_Penaltie" Association="Self.FK_Car_Penaltie">
+            <End Role="car" EntitySet="car" />
+            <End Role="penalties" EntitySet="penalties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_Region" Association="Self.FK_Car_Region">
+            <End Role="region" EntitySet="region" />
+            <End Role="car" EntitySet="car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_category" Association="Self.FK_category">
+            <End Role="category" EntitySet="category" />
+            <End Role="category_licence" EntitySet="category_licence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Color" Association="Self.FK_Color">
+            <End Role="car_colors" EntitySet="car_colors" />
+            <End Role="car" EntitySet="car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_driver" Association="Self.FK_driver">
+            <End Role="driver" EntitySet="driver" />
+            <End Role="licence" EntitySet="licence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_engine" Association="Self.FK_engine">
+            <End Role="engine_types" EntitySet="engine_types" />
+            <End Role="car" EntitySet="car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Licence_Penaltie" Association="Self.FK_Licence_Penaltie">
+            <End Role="licence" EntitySet="licence" />
+            <End Role="penalties" EntitySet="penalties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status" Association="Self.FK_Status">
+            <End Role="status_licence" EntitySet="status_licence" />
+            <End Role="licence" EntitySet="licence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_Licence" Association="Self.FK_Status_Licence">
+            <End Role="status_licence" EntitySet="status_licence" />
+            <End Role="history_hanges_statuses" EntitySet="history_hanges_statuses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_Penaltie" Association="Self.FK_Status_Penaltie">
+            <End Role="status_penalties" EntitySet="status_penalties" />
+            <End Role="penalties" EntitySet="penalties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_type_drive" Association="Self.FK_type_drive">
+            <End Role="type_of_drive" EntitySet="type_of_drive" />
+            <End Role="car" EntitySet="car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_roles" Association="Self.FK_users_roles">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="upModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="car">
+          <Key>
+            <PropertyRef Name="VIN" />
+          </Key>
+          <Property Name="VIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Manufacturer" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="Weight" Type="Int32" />
+          <Property Name="id_engine" Type="Int32" />
+          <Property Name="id_type_of_drive" Type="Int32" />
+          <Property Name="Color_num" Type="Int32" />
+          <Property Name="code_region" Type="Int32" />
+          <NavigationProperty Name="penalties" Relationship="Self.FK_Car_Penaltie" FromRole="car" ToRole="penalties" />
+          <NavigationProperty Name="region" Relationship="Self.FK_Car_Region" FromRole="car" ToRole="region" />
+          <NavigationProperty Name="car_colors" Relationship="Self.FK_Color" FromRole="car" ToRole="car_colors" />
+          <NavigationProperty Name="engine_types" Relationship="Self.FK_engine" FromRole="car" ToRole="engine_types" />
+          <NavigationProperty Name="type_of_drive" Relationship="Self.FK_type_drive" FromRole="car" ToRole="type_of_drive" />
+        </EntityType>
+        <EntityType Name="car_colors">
+          <Key>
+            <PropertyRef Name="Color_num" />
+          </Key>
+          <Property Name="Color_num" Type="Int32" Nullable="false" />
+          <Property Name="Color_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="is_mettalic" Type="Boolean" />
+          <Property Name="Name_EN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Color_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="car" Relationship="Self.FK_Color" FromRole="car_colors" ToRole="car" />
+        </EntityType>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="category1" />
+          </Key>
+          <Property Name="category1" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="technical_category" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="licence" Relationship="Self.category_licence" FromRole="category" ToRole="licence" />
+        </EntityType>
+        <EntityType Name="driver">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="middlename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="passport_serial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="passport_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="postcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="address_reg_city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="address_reg" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="address_life" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="address_life_city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="jobname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="photo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="licence" Relationship="Self.FK_driver" FromRole="driver" ToRole="licence" />
+        </EntityType>
+        <EntityType Name="engine_types">
+          <Key>
+            <PropertyRef Name="id_engine" />
+          </Key>
+          <Property Name="id_engine" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type_engine" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="car" Relationship="Self.FK_engine" FromRole="engine_types" ToRole="car" />
+        </EntityType>
+        <EntityType Name="history_hanges_statuses">
+          <Key>
+            <PropertyRef Name="id_change" />
+          </Key>
+          <Property Name="id_change" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date_time_change" Type="DateTime" Precision="3" />
+          <Property Name="id_status" Type="Int32" />
+          <Property Name="id_licence" Type="Int32" />
+          <NavigationProperty Name="status_licence" Relationship="Self.FK_Status_Licence" FromRole="history_hanges_statuses" ToRole="status_licence" />
+          <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="licence">
+          <Key>
+            <PropertyRef Name="id_licence" />
+          </Key>
+          <Property Name="licence_date" Type="DateTime" Precision="0" />
+          <Property Name="expire_date" Type="DateTime" Precision="0" />
+          <Property Name="categories" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="licence_series" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="licence_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Id_driver" Type="Int32" />
+          <Property Name="id_status" Type="Int32" />
+          <Property Name="id_licence" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="driver" Relationship="Self.FK_driver" FromRole="licence" ToRole="driver" />
+          <NavigationProperty Name="penalties" Relationship="Self.FK_Licence_Penaltie" FromRole="licence" ToRole="penalties" />
+          <NavigationProperty Name="status_licence" Relationship="Self.FK_Status" FromRole="licence" ToRole="status_licence" />
+          <NavigationProperty Name="category" Relationship="Self.category_licence" FromRole="licence" ToRole="category" />
+        </EntityType>
+        <EntityType Name="penalties">
+          <Key>
+            <PropertyRef Name="id_penaltie" />
+          </Key>
+          <Property Name="id_penaltie" Type="Int32" Nullable="false" />
+          <Property Name="date_time" Type="DateTime" Precision="3" />
+          <Property Name="id_status_penaltie" Type="Int32" />
+          <Property Name="summa" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="id_licence" Type="Int32" />
+          <Property Name="VIN_car" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="car" Relationship="Self.FK_Car_Penaltie" FromRole="penalties" ToRole="car" />
+          <NavigationProperty Name="licence" Relationship="Self.FK_Licence_Penaltie" FromRole="penalties" ToRole="licence" />
+          <NavigationProperty Name="status_penalties" Relationship="Self.FK_Status_Penaltie" FromRole="penalties" ToRole="status_penalties" />
+          <Property Name="photo_car" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="region">
+          <Key>
+            <PropertyRef Name="Code_sub" />
+          </Key>
+          <Property Name="Region_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Code_sub" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OKATO_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="car" Relationship="Self.FK_Car_Region" FromRole="region" ToRole="car" />
+        </EntityType>
+        <EntityType Name="status_licence">
+          <Key>
+            <PropertyRef Name="id_status" />
+          </Key>
+          <Property Name="id_status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_status" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="history_hanges_statuses" Relationship="Self.FK_Status_Licence" FromRole="status_licence" ToRole="history_hanges_statuses" />
+          <NavigationProperty Name="licence" Relationship="Self.FK_Status" FromRole="status_licence" ToRole="licence" />
+        </EntityType>
+        <EntityType Name="status_penalties">
+          <Key>
+            <PropertyRef Name="id_status_penaltie" />
+          </Key>
+          <Property Name="id_status_penaltie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_status_penaltie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="penalties" Relationship="Self.FK_Status_Penaltie" FromRole="status_penalties" ToRole="penalties" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="type_of_drive">
+          <Key>
+            <PropertyRef Name="id_type_of_drive" />
+          </Key>
+          <Property Name="id_type_of_drive" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type_of_drive1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="car" Relationship="Self.FK_type_drive" FromRole="type_of_drive" ToRole="car" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="password_user" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="login_user" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="id_role" Type="Int32" />
+          <NavigationProperty Name="roles" Relationship="upModel.FK_users_roles" FromRole="users" ToRole="roles" />
+        </EntityType>
+        <Association Name="FK_Car_Penaltie">
+          <End Role="car" Type="Self.car" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="penalties" Type="Self.penalties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="car">
+              <PropertyRef Name="VIN" />
+            </Principal>
+            <Dependent Role="penalties">
+              <PropertyRef Name="VIN_car" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_Region">
+          <End Role="region" Type="Self.region" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="car" Type="Self.car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="region">
+              <PropertyRef Name="Code_sub" />
+            </Principal>
+            <Dependent Role="car">
+              <PropertyRef Name="code_region" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Color">
+          <End Role="car_colors" Type="Self.car_colors" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="car" Type="Self.car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="car_colors">
+              <PropertyRef Name="Color_num" />
+            </Principal>
+            <Dependent Role="car">
+              <PropertyRef Name="Color_num" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_engine">
+          <End Role="engine_types" Type="Self.engine_types" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="car" Type="Self.car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="engine_types">
+              <PropertyRef Name="id_engine" />
+            </Principal>
+            <Dependent Role="car">
+              <PropertyRef Name="id_engine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_type_drive">
+          <End Role="type_of_drive" Type="Self.type_of_drive" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="car" Type="Self.car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type_of_drive">
+              <PropertyRef Name="id_type_of_drive" />
+            </Principal>
+            <Dependent Role="car">
+              <PropertyRef Name="id_type_of_drive" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_driver">
+          <End Role="driver" Type="Self.driver" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="licence" Type="Self.licence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="driver">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="licence">
+              <PropertyRef Name="Id_driver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_Licence">
+          <End Role="status_licence" Type="Self.status_licence" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="history_hanges_statuses" Type="Self.history_hanges_statuses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status_licence">
+              <PropertyRef Name="id_status" />
+            </Principal>
+            <Dependent Role="history_hanges_statuses">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Licence_Penaltie">
+          <End Role="licence" Type="Self.licence" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="penalties" Type="Self.penalties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="licence">
+              <PropertyRef Name="id_licence" />
+            </Principal>
+            <Dependent Role="penalties">
+              <PropertyRef Name="id_licence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status">
+          <End Role="status_licence" Type="Self.status_licence" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="licence" Type="Self.licence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status_licence">
+              <PropertyRef Name="id_status" />
+            </Principal>
+            <Dependent Role="licence">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_Penaltie">
+          <End Role="status_penalties" Type="Self.status_penalties" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="penalties" Type="Self.penalties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status_penalties">
+              <PropertyRef Name="id_status_penaltie" />
+            </Principal>
+            <Dependent Role="penalties">
+              <PropertyRef Name="id_status_penaltie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="category_licence">
+          <End Role="licence" Type="Self.licence" Multiplicity="*" />
+          <End Role="category" Type="Self.category" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="upEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="car" EntityType="Self.car" />
+          <EntitySet Name="car_colors" EntityType="Self.car_colors" />
+          <EntitySet Name="category" EntityType="Self.category" />
+          <EntitySet Name="driver" EntityType="Self.driver" />
+          <EntitySet Name="engine_types" EntityType="Self.engine_types" />
+          <EntitySet Name="history_hanges_statuses" EntityType="Self.history_hanges_statuses" />
+          <EntitySet Name="licence" EntityType="Self.licence" />
+          <EntitySet Name="penalties" EntityType="Self.penalties" />
+          <EntitySet Name="region" EntityType="Self.region" />
+          <EntitySet Name="status_licence" EntityType="Self.status_licence" />
+          <EntitySet Name="status_penalties" EntityType="Self.status_penalties" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="type_of_drive" EntityType="Self.type_of_drive" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <AssociationSet Name="FK_Car_Penaltie" Association="Self.FK_Car_Penaltie">
+            <End Role="car" EntitySet="car" />
+            <End Role="penalties" EntitySet="penalties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_Region" Association="Self.FK_Car_Region">
+            <End Role="region" EntitySet="region" />
+            <End Role="car" EntitySet="car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Color" Association="Self.FK_Color">
+            <End Role="car_colors" EntitySet="car_colors" />
+            <End Role="car" EntitySet="car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_engine" Association="Self.FK_engine">
+            <End Role="engine_types" EntitySet="engine_types" />
+            <End Role="car" EntitySet="car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_type_drive" Association="Self.FK_type_drive">
+            <End Role="type_of_drive" EntitySet="type_of_drive" />
+            <End Role="car" EntitySet="car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_driver" Association="Self.FK_driver">
+            <End Role="driver" EntitySet="driver" />
+            <End Role="licence" EntitySet="licence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_Licence" Association="Self.FK_Status_Licence">
+            <End Role="status_licence" EntitySet="status_licence" />
+            <End Role="history_hanges_statuses" EntitySet="history_hanges_statuses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Licence_Penaltie" Association="Self.FK_Licence_Penaltie">
+            <End Role="licence" EntitySet="licence" />
+            <End Role="penalties" EntitySet="penalties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status" Association="Self.FK_Status">
+            <End Role="status_licence" EntitySet="status_licence" />
+            <End Role="licence" EntitySet="licence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_Penaltie" Association="Self.FK_Status_Penaltie">
+            <End Role="status_penalties" EntitySet="status_penalties" />
+            <End Role="penalties" EntitySet="penalties" />
+          </AssociationSet>
+          <AssociationSet Name="category_licence" Association="Self.category_licence">
+            <End Role="licence" EntitySet="licence" />
+            <End Role="category" EntitySet="category" />
+          </AssociationSet>
+          <EntitySet Name="roles" EntityType="upModel.roles" />
+          <AssociationSet Name="FK_users_roles" Association="upModel.FK_users_roles">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="users" Relationship="upModel.FK_users_roles" FromRole="roles" ToRole="users" />
+        </EntityType>
+        <Association Name="FK_users_roles">
+          <End Type="upModel.roles" Role="roles" Multiplicity="0..1" />
+          <End Type="upModel.users" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище upModelContainer" CdmEntityContainer="upEntities">
+          <EntitySetMapping Name="car">
+            <EntityTypeMapping TypeName="upModel.car">
+              <MappingFragment StoreEntitySet="car">
+                <ScalarProperty Name="VIN" ColumnName="VIN" />
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="id_engine" ColumnName="id_engine" />
+                <ScalarProperty Name="id_type_of_drive" ColumnName="id_type_of_drive" />
+                <ScalarProperty Name="Color_num" ColumnName="Color_num" />
+                <ScalarProperty Name="code_region" ColumnName="code_region" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="car_colors">
+            <EntityTypeMapping TypeName="upModel.car_colors">
+              <MappingFragment StoreEntitySet="car_colors">
+                <ScalarProperty Name="Color_num" ColumnName="Color_num" />
+                <ScalarProperty Name="Color_code" ColumnName="Color_code" />
+                <ScalarProperty Name="is_mettalic" ColumnName="is_mettalic" />
+                <ScalarProperty Name="Name_EN" ColumnName="Name_EN" />
+                <ScalarProperty Name="Color_name" ColumnName="Color_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="category">
+            <EntityTypeMapping TypeName="upModel.category">
+              <MappingFragment StoreEntitySet="category">
+                <ScalarProperty Name="category1" ColumnName="category" />
+                <ScalarProperty Name="technical_category" ColumnName="technical_category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="driver">
+            <EntityTypeMapping TypeName="upModel.driver">
+              <MappingFragment StoreEntitySet="driver">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="middlename" ColumnName="middlename" />
+                <ScalarProperty Name="passport_serial" ColumnName="passport_serial" />
+                <ScalarProperty Name="passport_number" ColumnName="passport_number" />
+                <ScalarProperty Name="postcode" ColumnName="postcode" />
+                <ScalarProperty Name="address_reg_city" ColumnName="address_reg_city" />
+                <ScalarProperty Name="address_reg" ColumnName="address_reg" />
+                <ScalarProperty Name="address_life" ColumnName="address_life" />
+                <ScalarProperty Name="address_life_city" ColumnName="address_life_city" />
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="jobname" ColumnName="jobname" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="engine_types">
+            <EntityTypeMapping TypeName="upModel.engine_types">
+              <MappingFragment StoreEntitySet="engine_types">
+                <ScalarProperty Name="id_engine" ColumnName="id_engine" />
+                <ScalarProperty Name="type_engine" ColumnName="type_engine" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="history_hanges_statuses">
+            <EntityTypeMapping TypeName="upModel.history_hanges_statuses">
+              <MappingFragment StoreEntitySet="history_hanges_statuses">
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="id_change" ColumnName="id_change" />
+                <ScalarProperty Name="date_time_change" ColumnName="date_time_change" />
+                <ScalarProperty Name="id_status" ColumnName="id_status" />
+                <ScalarProperty Name="id_licence" ColumnName="id_licence" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="licence">
+            <EntityTypeMapping TypeName="upModel.licence">
+              <MappingFragment StoreEntitySet="licence">
+                <ScalarProperty Name="licence_date" ColumnName="licence_date" />
+                <ScalarProperty Name="expire_date" ColumnName="expire_date" />
+                <ScalarProperty Name="categories" ColumnName="categories" />
+                <ScalarProperty Name="licence_series" ColumnName="licence_series" />
+                <ScalarProperty Name="licence_number" ColumnName="licence_number" />
+                <ScalarProperty Name="Id_driver" ColumnName="Id_driver" />
+                <ScalarProperty Name="id_status" ColumnName="id_status" />
+                <ScalarProperty Name="id_licence" ColumnName="id_licence" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="penalties">
+            <EntityTypeMapping TypeName="upModel.penalties">
+              <MappingFragment StoreEntitySet="penalties">
+                <ScalarProperty Name="photo_car" ColumnName="photo_car" />
+                <ScalarProperty Name="id_penaltie" ColumnName="id_penaltie" />
+                <ScalarProperty Name="date_time" ColumnName="date_time" />
+                <ScalarProperty Name="id_status_penaltie" ColumnName="id_status_penaltie" />
+                <ScalarProperty Name="summa" ColumnName="summa" />
+                <ScalarProperty Name="id_licence" ColumnName="id_licence" />
+                <ScalarProperty Name="VIN_car" ColumnName="VIN_car" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="region">
+            <EntityTypeMapping TypeName="upModel.region">
+              <MappingFragment StoreEntitySet="region">
+                <ScalarProperty Name="Region_name" ColumnName="Region_name" />
+                <ScalarProperty Name="Code_sub" ColumnName="Code_sub" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="OKATO_code" ColumnName="OKATO_code" />
+                <ScalarProperty Name="Gost" ColumnName="Gost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="status_licence">
+            <EntityTypeMapping TypeName="upModel.status_licence">
+              <MappingFragment StoreEntitySet="status_licence">
+                <ScalarProperty Name="id_status" ColumnName="id_status" />
+                <ScalarProperty Name="name_status" ColumnName="name_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="status_penalties">
+            <EntityTypeMapping TypeName="upModel.status_penalties">
+              <MappingFragment StoreEntitySet="status_penalties">
+                <ScalarProperty Name="id_status_penaltie" ColumnName="id_status_penaltie" />
+                <ScalarProperty Name="name_status_penaltie" ColumnName="name_status_penaltie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="upModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="type_of_drive">
+            <EntityTypeMapping TypeName="upModel.type_of_drive">
+              <MappingFragment StoreEntitySet="type_of_drive">
+                <ScalarProperty Name="id_type_of_drive" ColumnName="id_type_of_drive" />
+                <ScalarProperty Name="type_of_drive1" ColumnName="type_of_drive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="upModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="password_user" ColumnName="password_user" />
+                <ScalarProperty Name="login_user" ColumnName="login_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="category_licence" TypeName="upModel.category_licence" StoreEntitySet="category_licence">
+            <EndProperty Name="licence">
+              <ScalarProperty Name="id_licence" ColumnName="id_licence" />
+            </EndProperty>
+            <EndProperty Name="category">
+              <ScalarProperty Name="category1" ColumnName="category" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="upModel.roles">
+              <MappingFragment StoreEntitySet="roles">
+                <ScalarProperty Name="name_role" ColumnName="name_role" />
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

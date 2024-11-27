@@ -1,0 +1,76 @@
+﻿<Window x:Class="WpfApp4.Windows.EditPenaltie"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp4.Windows"
+        mc:Ignorable="d"
+        Title="EditPenaltie" Height="450" Width="800" Background="#D1EEFC"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FFFCD6"/>
+            <Setter Property="Width" Value="90"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+    </Window.Resources>
+    <DockPanel>
+
+
+
+        <Button DockPanel.Dock="Top" Content="Назад" HorizontalAlignment="Left" Click="Back" />
+
+        <Image Source="C:\Users\Анжела\source\repos\WpfApp4\WpfApp4\img\gibdd_logo.png" Name="ava" Stretch="Uniform" MaxWidth="300" MaxHeight="300">
+            <Image.Effect>
+                <BlurEffect Radius="15" x:Name="BlurRadius"/>
+            </Image.Effect>
+        </Image>
+
+        <Grid DockPanel.Dock="Top" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="170"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+
+                <RowDefinition/>
+                <RowDefinition Height="60"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--<RowDefinition/>-->
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Сумма*" Grid.Column="0" Grid.Row="0"/>
+            <TextBox Grid.Column="1" Grid.Row="0" Name="sum" Text="{Binding summa}"/>
+
+            <TextBlock Text="Фото" Grid.Column="0" Grid.Row="1"/>
+            <Button Grid.Column="1" Grid.Row="1" Height="20" Margin="0" Content="Выбрать фото" Click="addPhoto"/>
+            <TextBlock Text="Дата*" Grid.Column="0" Grid.Row="2" />
+            <Grid Grid.Column="1" Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="{Binding date_time}"/>
+                <DatePicker Grid.Row="1" Name="Datepic"/>
+            </Grid>
+
+            <TextBlock Text="Время*" Grid.Column="0" Grid.Row="3"/>
+            <TextBox Grid.Column="1" Grid.Row="3" Name="time" Text="14:30:00" />
+
+            <TextBlock Text="Статус" Grid.Column="0" Grid.Row="4"/>
+            <ComboBox Grid.Column="1" Grid.Row="4" Name="status" Text="{Binding status_penalties.name_status_penaltie}"/>
+            <TextBlock Text="Лицензия*" Grid.Column="0" Grid.Row="5"/>
+            <ComboBox Grid.Column="1" Grid.Row="5" Name="lic" Text="{Binding id_Licence}"/>
+            <TextBlock Text="Машина*" Grid.Column="0" Grid.Row="6"/>
+            <ComboBox Grid.Column="1" Grid.Row="6" Name="car" Text="{Binding VIN_car}"/>
+            <!--<TextBox Grid.Column="1" Grid.Row="2" Name="description" Text="{Binding date_time}"/>-->
+            <Button Content="Добавить" Grid.Column="1" Grid.Row="7" Visibility="Hidden" Name="Add" Click="AddPen" />
+            <Button Content="Сохранить" Grid.Column="1" Grid.Row="7" Visibility="Hidden" Name="Edit" Click="EditPen" />
+        </Grid>
+    </DockPanel>
+</Window>

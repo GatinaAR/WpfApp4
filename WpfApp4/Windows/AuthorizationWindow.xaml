@@ -1,0 +1,32 @@
+﻿<Window x:Class="WpfApp4.Windows.AuthorizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp4.Windows"
+        mc:Ignorable="d"
+        Title="AuthorizationWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <DropShadowEffect x:Key="TextOutlineEffect" Color="White" BlurRadius="5" ShadowDepth="0"/>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FFFCD6"/>
+            <Setter Property="Width" Value="90"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Image Source="C:\Users\Анжела\source\repos\WpfApp4\WpfApp4\img\gibdd_logo.png" Stretch="Uniform">
+            <Image.Effect>
+                <BlurEffect Radius="15" />
+            </Image.Effect>
+        </Image>
+        <StackPanel Width="200" Height="150">
+            <TextBlock Text="Пароль" FontWeight="Bold" Effect="{StaticResource TextOutlineEffect}" FontSize="18"/>
+            <TextBox Name="password"  Text="{Binding password_user}" ToolTip="Введите пароль"/>
+            <TextBlock Text="Логин" FontWeight="Bold" Effect="{StaticResource TextOutlineEffect}" FontSize="18"/>
+            <TextBox Name="login"  Text="{Binding login_user}" ToolTip="Введите логин"/>
+            <Button Click="authorizationBut" Content="Авторизоваться"/>
+        </StackPanel>
+    </Grid>
+</Window>

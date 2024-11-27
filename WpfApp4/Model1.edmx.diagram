@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5df2a8e54c1b45ee9ddc02e5c1cf274d" Name="Diagram1">
+        <EntityTypeShape EntityType="upModel.car" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="upModel.car_colors" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="upModel.category" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="upModel.driver" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="upModel.engine_types" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="upModel.history_hanges_statuses" Width="1.5" PointX="3" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="upModel.licence" Width="1.5" PointX="3" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="upModel.penalties" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="upModel.region" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="upModel.status_licence" Width="1.5" PointX="0.75" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="upModel.status_penalties" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="upModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="upModel.type_of_drive" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="upModel.users" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="upModel.FK_Car_Penaltie" ManuallyRouted="false" />
+        <AssociationConnector Association="upModel.FK_Car_Region" ManuallyRouted="false" />
+        <AssociationConnector Association="upModel.FK_Color" ManuallyRouted="false" />
+        <AssociationConnector Association="upModel.FK_engine" ManuallyRouted="false" />
+        <AssociationConnector Association="upModel.FK_type_drive" ManuallyRouted="false" />
+        <AssociationConnector Association="upModel.FK_driver" ManuallyRouted="false" />
+        <AssociationConnector Association="upModel.FK_Status_Licence" ManuallyRouted="false" />
+        <AssociationConnector Association="upModel.FK_Licence_Penaltie" ManuallyRouted="false" />
+        <AssociationConnector Association="upModel.FK_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="upModel.FK_Status_Penaltie" ManuallyRouted="false" />
+        <AssociationConnector Association="upModel.category_licence" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="upModel.roles" Width="1.5" PointX="2.5" PointY="22" />
+        <AssociationConnector Association="upModel.FK_users_roles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

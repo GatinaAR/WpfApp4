@@ -1,0 +1,92 @@
+﻿<Window x:Class="WpfApp4.Windows.DriverWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp4.Windows"
+        mc:Ignorable="d"
+        Title="DriverWindow" Height="450" Width="800"
+        Background="#D1EEFC"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FFFCD6"/>
+            <Setter Property="Width" Value="90"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Menu  Grid.Column="0" Background="#D1EEFC">
+                <MenuItem Header="Водители" IsEnabled="False"/>
+                <MenuItem Header="ВУ" Click="Licences_Click"/>
+                <MenuItem Header="Машины" Click="Cars_Click"/>
+                <MenuItem/>
+                <!--<MenuItem>
+                    <MenuItem.Background>
+                        <ImageBrush ImageSource="gibdd_logo.png"/>
+                    </MenuItem.Background>
+                </MenuItem>-->
+            </Menu>
+            <Image Grid.Column="1" Source="C:\Users\Анжела\source\repos\WpfApp4\WpfApp4\img\gibdd_logo.png" />
+        </Grid>
+
+        <DataGrid Name="driversGrid" Grid.Row="1" AutoGenerateColumns="False" AlternationCount="2" SelectionChanged="DriverGrid_SelectionChanged">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <Trigger Property="AlternationIndex" Value="0">
+                            <Setter Property="Background" Value="#E0A9AF"/>
+                        </Trigger>
+                        <Trigger Property="AlternationIndex" Value="1">
+                            <Setter Property="Background" Value="White"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Имя" Binding="{Binding name}"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding middlename}"/>
+                <DataGridTextColumn Header="Серия паспорта" Binding="{Binding passport_serial}"/>
+                <DataGridTextColumn Header="Номер паспорта" Binding="{Binding passport_number}"/>
+                <DataGridTextColumn Header="Город регистрации" Binding="{Binding address_reg_city}"/>
+                <DataGridTextColumn Header="Точный адрес регистрации" Binding="{Binding postcode}"/>
+                <DataGridTextColumn Header="Город проживания" Binding="{Binding address_life_city}"/>
+                <DataGridTextColumn Header="Точный адрес проживания" Binding="{Binding address_life}"/>
+                <DataGridTextColumn Header="Место работы"  Binding="{Binding company}"/>
+                <DataGridTextColumn Header="Должность"  Binding="{Binding jobname}"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding phone}"/>
+                <DataGridTextColumn Header="Почта" Binding="{Binding email}"/>
+                <DataGridTextColumn Header="Фото" Binding="{Binding photo}"/>
+                <DataGridTextColumn Header="Замечание" Binding="{Binding description}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Изменить" Name="Edit" Click="EditWindow"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <Grid  Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Добавить" Grid.Column="0" Name="Add" Click="AddDriver" />
+            <Button Content="Удалить" Grid.Column="1" Name="Edit" Click="DelDriver" />
+        </Grid>
+
+    </Grid>
+</Window>
